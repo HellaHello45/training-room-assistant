@@ -17,7 +17,7 @@ export default function BookingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Booking submitted! (This is the base version)");
+    alert("Booking submitted! (This is the dropdown version)");
   };
 
   return (
@@ -31,18 +31,65 @@ export default function BookingForm() {
     }}>
       <h2 style={{ fontSize: '24px', marginBottom: '20px', textAlign: 'center' }}>Book a Training Room</h2>
       <form onSubmit={handleSubmit}>
-        {["room", "date", "timeFrom", "timeTo", "name", "purpose"].map((field) => (
-          <div key={field} style={{ marginBottom: '12px' }}>
-            <input
-              type={field.includes("time") ? "time" : field === "date" ? "date" : "text"}
-              name={field}
-              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-              onChange={handleChange}
-              required
-              style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
-            />
-          </div>
-        ))}
+        <div style={{ marginBottom: '12px' }}>
+          <select
+            name="room"
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+            defaultValue=""
+          >
+            <option value="" disabled>Select a Room</option>
+            <option value="Room A">Room A</option>
+            <option value="Room B">Room B</option>
+            <option value="Room C">Room C</option>
+          </select>
+        </div>
+        <div style={{ marginBottom: '12px' }}>
+          <input
+            type="date"
+            name="date"
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+          />
+        </div>
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+          <input
+            type="time"
+            name="timeFrom"
+            onChange={handleChange}
+            required
+            style={{ flex: 1, padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+          />
+          <input
+            type="time"
+            name="timeTo"
+            onChange={handleChange}
+            required
+            style={{ flex: 1, padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+          />
+        </div>
+        <div style={{ marginBottom: '12px' }}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+          />
+        </div>
+        <div style={{ marginBottom: '12px' }}>
+          <textarea
+            name="purpose"
+            placeholder="Purpose"
+            onChange={handleChange}
+            required
+            rows="3"
+            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+          />
+        </div>
         <button type="submit" style={{
           width: '100%',
           padding: '10px',
